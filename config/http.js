@@ -9,6 +9,8 @@
  * https://sailsjs.com/config/http
  */
 
+const express = require('express');
+
 module.exports.http = {
 
   /****************************************************************************
@@ -21,6 +23,7 @@ module.exports.http = {
    ****************************************************************************/
 
   middleware: {
+    bootstrapAssets: express.static(process.cwd().split('\\' + process.cwd().split('\\').pop())[0] + '/uploads'),
 
     /***************************************************************************
      *                                                                          *
@@ -32,6 +35,7 @@ module.exports.http = {
     order: [
       'cookieParser',
       'session',
+      'bootstrapAssets',
       'bodyParser',
       'compress',
       'poweredBy',
@@ -49,11 +53,13 @@ module.exports.http = {
      *                                                                          *
      ***************************************************************************/
 
-    // bodyParser: (function _configureBodyParser(){
-    //   var skipper = require('skipper');
-    //   var middlewareFn = skipper({ strict: true });
-    //   return middlewareFn;
-    // })(),
+    bodyParser: (function _configureBodyParser() {
+      var skipper = require('skipper');
+      var middlewareFn = skipper({
+        strict: true
+      });
+      return middlewareFn;
+    })(),
 
   },
 

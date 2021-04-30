@@ -71,4 +71,18 @@ module.exports = {
     res.ok(user);
   },
 
+  uploadImage: async (req, res) => {
+    req.file('attachment').upload({
+      dirname: '../../../uploads/'
+    }, function (err, uploadedFiles) {
+      if (err) return res.serverError(err);
+      return res.json({
+        message: uploadedFiles.length + ' file(s) uploaded successfully!',
+        files: uploadedFiles
+      });
+    });
+
+    // res.ok();
+  },
+
 };

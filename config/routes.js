@@ -42,5 +42,6 @@ module.exports.routes = {
   // User Controller Routes
   'POST /api/v1/user': 'UserController.create',
   'PATCH /api/v1/user': 'UserController.update',
+  'POST /api/v1/user/uploadImage': 'UserController.uploadImage',
 
 };
