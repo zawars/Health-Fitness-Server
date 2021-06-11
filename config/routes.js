@@ -43,5 +43,27 @@ module.exports.routes = {
   'POST /api/v1/user': 'UserController.create',
   'PATCH /api/v1/user': 'UserController.update',
   'POST /api/v1/user/uploadImage': 'UserController.uploadImage',
+  'GET /api/v1/user/:id/client/:client': 'UserController.isClient',
+  'GET /api/v1/user/:id/clients/fetch': 'UserController.getClients',
+  'GET /api/v1/user/:id/trainers/fetch': 'UserController.getTrainers',
+
+  // Video Library Controller Routes
+  'POST /api/v1/videoLibrary': 'VideoLibraryController.create',
+
+  // Program Controller Routes
+  'POST /api/v1/program': 'ProgramController.create',
+  'GET /api/v1/program/user/:id': 'ProgramController.fetchUserProgram',
+
+  // Conversation Controller Routes
+  'GET /api/v1/conversation/fetch/:id': 'ConversationController.fetchConversations',
+  'POST /api/v1/conversation': 'ConversationController.create',
+
+  // Messages Controller Routes
+  'GET /api/v1/message/fetch/:user1/:user2': 'MessageController.fetchMessages',
+  'GET /api/v1/message/markRead/:id/:conversationId': 'MessageController.markRead',
+
+  // Program Invoice Routes
+  'GET /api/v1/programInvoice/user/:id': 'ProgramInvoiceController.fetchUserInvoices',
+  'GET /api/v1/programInvoice/:id/approve': 'ProgramInvoiceController.approveInvoice',
 
 };

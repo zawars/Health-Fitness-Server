@@ -16,7 +16,7 @@ module.exports = {
   },
 
   get: (key, done) => {
-    client.get(key, function (error, result) {
+    client.get(key, function (error, result) { 
       if (error) {
         console.log('Redis :: ' + error);
         throw error;

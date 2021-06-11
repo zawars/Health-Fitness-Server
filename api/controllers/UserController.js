@@ -61,13 +61,24 @@ module.exports = {
 
   update: async (req, res) => {
     let body = req.body;
-    console.log(body.email)
-
-    let user = await User.updateOne({
+    let clients = body.clients;
+    delete(body.clients);
+    let user = await User.update({
       email: body.email
-    }).set(body);
+    }).set(body).fetch();
+    user = user[0];
 
-    console.log(user)
+    if (user.profileType == 'Trainer') {
+      if (clients) {
+        await User.addToCollection(user.id, 'clients').members([...clients]);
+        let temp = await User.update({
+          id: clients[0].id
+        }).set({
+          trainer: user.id
+        }).fetch();
+      }
+    }
+
     res.ok(user);
   },
 
@@ -83,6 +94,51 @@ module.exports = {
     });
 
     // res.ok();
+  },
+
+  isClient: async (req, res) => {
+    let id = req.params.id;
+    let clientId = req.params.client;
+
+    let user = await User.findOne({
+      id
+    }).populateAll();
+
+    let flag = false;
+    user.clients.map(client => {
+      if (client.id == clientId) {
+        flag = true;
+      }
+    });
+
+    res.ok({
+      isClient: flag
+    });
+  },
+
+  getClients: async (req, res) => {
+    let id = req.params.id;
+
+    let user = await User.findOne({
+      id
+    }).populate('clients');
+
+    res.ok({
+      clients: user.clients
+    });
+  },
+
+  getTrainers: async (req, res) => {
+    let id = req.params.id;
+
+    let user = await User.findOne({
+      id
+    }).populateAll();
+
+    res.ok({
+      programs: user.programs,
+      trainers: [user.trainer]
+    });
   },
 
 };

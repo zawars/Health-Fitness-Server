@@ -67,6 +67,10 @@ module.exports = {
       type: 'string',
       defaultsTo: 'Trainee'
     },
+    trainerType: {
+      type: 'string',
+      defaultsTo: 'Fitness Trainer'
+    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
@@ -74,14 +78,29 @@ module.exports = {
     primarySkill: {
       model: 'skills'
     },
-    secondarySkill: {
-      collection: 'skills',
-      via: 'userSkills'
+    trainer: {
+      model: 'user'
     },
+    clients: {
+      collection: 'user'
+    },
+    programs: {
+      collection: 'program'
+    },
+
 
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
+    secondarySkill: {
+      collection: 'skills',
+      via: 'userSkills'
+    },
+    programInvoices: {
+      collection: 'programInvoice',
+      via: 'user'
+    },
+
 
   },
 
