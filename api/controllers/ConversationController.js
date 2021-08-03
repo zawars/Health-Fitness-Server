@@ -40,7 +40,7 @@ module.exports = {
     if (conversation.length > 0) {
       res.ok(conversation);
     } else {
-      conversation = await Conversation.create(body).fetch().populateAll();
+      conversation = await Conversation.create(body).fetch();
       res.ok(conversation);
     }
   },

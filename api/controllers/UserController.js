@@ -123,9 +123,15 @@ module.exports = {
       id
     }).populate('clients');
 
-    res.ok({
-      clients: user.clients
-    });
+    if (user) {
+      res.ok({
+        clients: user.clients
+      });
+    } else {
+      res.ok({
+        clients: []
+      });
+    }
   },
 
   getTrainers: async (req, res) => {
