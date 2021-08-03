@@ -41,9 +41,6 @@ module.exports = {
       res.ok(conversation);
     } else {
       conversation = await Conversation.create(body).fetch();
-      conversation = await Conversation.findOne({
-        id: conversation.id
-      }).populateAll();
       res.ok(conversation);
     }
   },
