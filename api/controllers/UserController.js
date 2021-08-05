@@ -143,7 +143,7 @@ module.exports = {
 
     res.ok({
       programs: user.programs,
-      trainers: [user.trainer]
+      trainers: user.trainer ? [user.trainer] : []
     });
   },
 
