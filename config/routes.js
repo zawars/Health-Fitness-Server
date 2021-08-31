@@ -49,6 +49,7 @@ module.exports.routes = {
 
   // Video Library Controller Routes
   'POST /api/v1/videoLibrary': 'VideoLibraryController.create',
+  'GET /api/v1/videoLibrary/user/:id/fetch': 'VideoLibraryController.fetchVideosByUser',
 
   // Program Controller Routes
   'POST /api/v1/program': 'ProgramController.create',

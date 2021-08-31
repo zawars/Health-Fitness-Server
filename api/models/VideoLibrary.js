@@ -25,6 +25,9 @@ module.exports = {
     video: {
       model: 'attachment'
     },
+    user: {
+      model: 'user'
+    }
 
 
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗

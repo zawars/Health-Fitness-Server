@@ -8,7 +8,6 @@
 module.exports = {
   create: async (req, res) => {
     let body = req.body;
-    console.log(body)
 
     req.file('attachment').upload({
       dirname: '../../../uploads/'
@@ -28,11 +27,22 @@ module.exports = {
       let videoObj = await VideoLibrary.create({
         title: body.title,
         notes: body.notes,
-        video: attach.id
+        video: attach.id,
+        user: body.user
       }).fetch();
 
       res.ok(videoObj);
     });
+
+  },
+
+  fetchVideosByUser: async (req, res) => {
+    let userId = req.params.id;
+    let videos = await VideoLibrary.find({
+      user: userId
+    }).populateAll();
+
+    res.ok(videos)
 
   },
 
