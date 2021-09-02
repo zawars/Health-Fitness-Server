@@ -10,12 +10,18 @@ const jwt = require('jsonwebtoken');
 // const io = require("socket.io")(sails.hooks.http);
 
 io.on("connection", (socket) => {
+  socket.on('error', function () {
+    console.log('error catch!');
+  });
+
   jwt.verify(socket.handshake.query.token, sails.config.session.secret, (err, authData) => {
     RedisService.set(`socket-${authData.id}`, socket.id, () => {
       console.log(`Socket Client connected: ${socket.id}`, authData.id);
 
       socket.on('messageSend', data => {
+        console.log(data)
         RedisService.get(`socket-${data.otherUserId}`, socketId => {
+          console.log('socketId', socketId)
           Message.create({
             sender: data.id,
             receiver: data.otherUserId,
@@ -26,11 +32,12 @@ io.on("connection", (socket) => {
             if (socketId) {
               io.to(socketId).emit('messageReceive', result);
             }
+
+            io.to(data.socketId).emit('messageReceive', result);
           });
 
         });
       });
-
 
       socket.on('fetchMessagesCount', async data => {
         let messagesCount = await Message.count({

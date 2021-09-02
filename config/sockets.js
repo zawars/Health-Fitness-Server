@@ -57,7 +57,6 @@ module.exports.sockets = {
           proceed('You are not permitted to perform this action. Unauthorized, Token mismatch.', false);
         } else {
           RedisService.get(authData.id, (result) => {
-
             if (result != undefined) {
               jwt.verify(result, sails.config.session.secret, (err, authDataResult) => {
                 if (authData.id == authDataResult.id) {

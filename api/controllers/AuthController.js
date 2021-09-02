@@ -14,7 +14,6 @@ module.exports = {
       email: data.email
     }).decrypt();
 
-    console.log('login', user)
     if (user) {
       // if (user.isVerified) {
       // if (err) {
