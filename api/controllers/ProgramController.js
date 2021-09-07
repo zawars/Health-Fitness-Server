@@ -8,13 +8,6 @@
 module.exports = {
   create: async (req, res) => {
     let body = req.body;
-    let exercises = await Exercise.createEach(body.exercise).fetch();
-    let exerciseIds = [];
-
-    exercises.forEach(val => exerciseIds.push(val.id));
-    delete(body.exercise);
-    body.exercise = exerciseIds;
-
     let program = await Program.create(body).fetch();
 
     res.ok(program);

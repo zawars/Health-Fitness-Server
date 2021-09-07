@@ -25,6 +25,9 @@ module.exports = {
     video: {
       model: 'videoLibrary'
     },
+    user: {
+      model: 'user'
+    },
 
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗

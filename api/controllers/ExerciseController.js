@@ -6,7 +6,14 @@
  */
 
 module.exports = {
-  
+  fetchExerciseByUser: async (req, res) => {
+    let id = req.params.id;
+
+    let exerciseList = await Exercise.find({
+      user: id
+    }).populateAll();
+
+    res.ok(exerciseList);
+  },
 
 };
-

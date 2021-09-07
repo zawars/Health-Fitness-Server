@@ -18,6 +18,15 @@ module.exports = {
     description: {
       type: 'string'
     },
+    type: {
+      type: 'string'
+    },
+    athleticLevel: {
+      type: 'string'
+    },
+    price: {
+      type: 'number'
+    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗

@@ -47,6 +47,9 @@ module.exports.routes = {
   'GET /api/v1/user/:id/clients/fetch': 'UserController.getClients',
   'GET /api/v1/user/:id/trainers/fetch': 'UserController.getTrainers',
 
+  // Exercise Library Controller Routes
+  'GET /api/v1/exercise/user/:id/fetch': 'ExerciseController.fetchExerciseByUser',
+
   // Video Library Controller Routes
   'POST /api/v1/videoLibrary': 'VideoLibraryController.create',
   'GET /api/v1/videoLibrary/user/:id/fetch': 'VideoLibraryController.fetchVideosByUser',
