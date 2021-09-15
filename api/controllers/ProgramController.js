@@ -13,6 +13,16 @@ module.exports = {
     res.ok(program);
   },
 
+  update: async (req, res) => {
+    let body = req.body;
+
+    let program = await Program.updateOne({
+      id: body.id
+    }).set(body);
+
+    res.ok(program);
+  },
+
   fetchUserProgram: async (req, res) => {
     let program = await Program.find({
       user: req.params.id

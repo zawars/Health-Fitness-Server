@@ -18,6 +18,15 @@ module.exports = {
     notes: {
       type: 'string'
     },
+    set: {
+      type: 'string'
+    },
+    reps: {
+      type: 'string'
+    },
+    time: {
+      type: 'string'
+    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗

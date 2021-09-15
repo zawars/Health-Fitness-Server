@@ -16,4 +16,19 @@ module.exports = {
     res.ok(exerciseList);
   },
 
+  update: async (req, res) => {
+    let id = req.params.id;
+
+    let exercise = await Exercise.updateOne({
+      id
+    }).set({
+      ...req.body,
+      video: req.body.video.id,
+      program: req.body.program.id,
+      user: req.body.user.id,
+    });
+
+    res.ok(exercise);
+  },
+
 };

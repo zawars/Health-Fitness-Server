@@ -49,14 +49,17 @@ module.exports.routes = {
 
   // Exercise Library Controller Routes
   'GET /api/v1/exercise/user/:id/fetch': 'ExerciseController.fetchExerciseByUser',
+  'PATCH /api/v1/exercise/:id': 'ExerciseController.update',
 
   // Video Library Controller Routes
   'POST /api/v1/videoLibrary': 'VideoLibraryController.create',
   'GET /api/v1/videoLibrary/user/:id/fetch': 'VideoLibraryController.fetchVideosByUser',
+  'PATCH /api/v1/videoLibrary': 'VideoLibraryController.update',
 
   // Program Controller Routes
   'POST /api/v1/program': 'ProgramController.create',
   'GET /api/v1/program/user/:id': 'ProgramController.fetchUserProgram',
+  'PATCH /api/v1/program': 'ProgramController.update',
 
   // Conversation Controller Routes
   'GET /api/v1/conversation/fetch/:id': 'ConversationController.fetchConversations',
