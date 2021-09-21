@@ -50,6 +50,7 @@ module.exports.routes = {
   // Exercise Library Controller Routes
   'GET /api/v1/exercise/user/:id/fetch': 'ExerciseController.fetchExerciseByUser',
   'PATCH /api/v1/exercise/:id': 'ExerciseController.update',
+  'POST /api/v1/exercise/fetch/populate': 'ExerciseController.fetchExercises',
 
   // Video Library Controller Routes
   'POST /api/v1/videoLibrary': 'VideoLibraryController.create',

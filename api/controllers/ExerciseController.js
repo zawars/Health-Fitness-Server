@@ -31,4 +31,27 @@ module.exports = {
     res.ok(exercise);
   },
 
+  fetchExercises: async (req, res) => {
+    let body = req.body;
+
+    let exercise = await Exercise.find({
+      id: body.exercise
+    }).populateAll();
+
+    let count = 0;
+    exercise.forEach(async (val, index) => {
+      let attach = await Attachment.findOne({
+        id: val.video.video
+      }).populateAll();
+      exercise[index].video.video = attach;
+
+      count++;
+      if (count == exercise.length) {
+        res.ok(exercise);
+      }
+    });
+
+  },
+
+
 };
