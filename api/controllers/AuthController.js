@@ -76,7 +76,8 @@ module.exports = {
           res.ok({
             token,
             user,
-            message: "Logged in successfully."
+            message: "Logged in successfully.",
+            isNewUser: true
           });
         });
       });

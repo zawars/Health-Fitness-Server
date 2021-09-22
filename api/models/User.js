@@ -52,9 +52,6 @@ module.exports = {
     country: {
       type: 'string'
     },
-    languages: {
-      type: 'json'
-    },
     userType: {
       type: 'string',
       defaultsTo: 'regular'
@@ -86,6 +83,9 @@ module.exports = {
     },
     programs: {
       collection: 'program'
+    },
+    languages: {
+      collection: 'languages'
     },
 
 

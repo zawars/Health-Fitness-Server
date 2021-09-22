@@ -63,10 +63,13 @@ module.exports = {
     let body = req.body;
     let clients = body.clients;
     delete(body.clients);
+    console.log(body)
+
     let user = await User.update({
-      email: body.email
+      id: req.params.id
     }).set(body).fetch();
     user = user[0];
+
 
     if (user.profileType == 'Trainer') {
       if (clients) {
