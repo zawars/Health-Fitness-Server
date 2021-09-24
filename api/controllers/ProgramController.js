@@ -17,7 +17,7 @@ module.exports = {
     let body = req.body;
 
     let program = await Program.updateOne({
-      id: body.id
+      id: body.id || req.params.id
     }).set(body);
 
     res.ok(program);

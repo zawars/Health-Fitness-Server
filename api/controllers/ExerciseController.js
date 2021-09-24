@@ -13,7 +13,18 @@ module.exports = {
       user: id
     }).populateAll();
 
-    res.ok(exerciseList);
+    let count = 0;
+    exerciseList.forEach(async (val, index) => {
+      let attach = await Attachment.findOne({
+        id: val.video.video
+      }).populateAll();
+      exerciseList[index].video.video = attach;
+
+      count++;
+      if (count == exerciseList.length) {
+        res.ok(exerciseList);
+      }
+    });
   },
 
   update: async (req, res) => {

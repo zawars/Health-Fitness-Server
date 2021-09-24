@@ -63,7 +63,6 @@ module.exports = {
     let body = req.body;
     let clients = body.clients;
     delete(body.clients);
-    console.log(body)
 
     let user = await User.update({
       id: req.params.id
@@ -81,6 +80,10 @@ module.exports = {
         }).fetch();
       }
     }
+
+    user = await User.findOne({
+      id: user.id
+    }).populateAll();
 
     res.ok(user);
   },
