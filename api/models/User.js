@@ -25,7 +25,7 @@ module.exports = {
     },
     avatar: {
       type: 'string',
-      defaultsTo: '../assets/congrats.png'
+      defaultsTo: '../assets/empty-user.png'
     },
     password: {
       type: 'string',
