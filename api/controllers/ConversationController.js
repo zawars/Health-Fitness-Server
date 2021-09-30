@@ -17,7 +17,7 @@ module.exports = {
           user2: id
         },
       ]
-    }).populateAll();
+    }).sort('updatedAt DESC').populateAll();
 
     res.ok(conversations);
   },
