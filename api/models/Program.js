@@ -42,6 +42,9 @@ module.exports = {
       collection: 'exercise',
       via: 'program'
     },
+    clients: {
+      collection: 'user'
+    }
 
   },
 
