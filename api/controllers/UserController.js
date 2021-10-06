@@ -153,4 +153,25 @@ module.exports = {
     });
   },
 
+  search: (req, res) => {
+    let query = req.params.query;
+    User.find({
+      or: [{
+          name: {
+            'contains': query
+          }
+        },
+        {
+          email: {
+            'contains': query
+          }
+        }
+      ]
+    }).then(users => {
+      res.ok(users);
+    }).catch(err => {
+      res.badRequest(err);
+    });
+  },
+
 };
