@@ -5,9 +5,12 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "@sailshq/connect-redis": "^3.2.1",
     "@sailshq/lodash": "^3.10.3",
     "@sailshq/socket.io-redis": "^5.2.0",
+    "ffprobe-static": "^3.0.0",
+    "fluent-ffmpeg": "^2.1.2",
     "grunt": "1.0.4",
     "jsonwebtoken": "^8.5.1",
     "redis": "^3.1.1",
