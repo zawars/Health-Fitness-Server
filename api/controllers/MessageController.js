@@ -40,7 +40,7 @@ io.on("connection", (socket) => {
       });
 
       socket.on('fetchMessagesCount', async data => {
-        let messagesCount = await Message.count({
+        let messagesCount = await Message.find({
           unread: true,
           receiver: data.id
         });
