@@ -25,9 +25,6 @@ module.exports = {
     video: {
       model: 'attachment'
     },
-    thumbnail: {
-      model: 'attachment'
-    },
     user: {
       model: 'user'
     },

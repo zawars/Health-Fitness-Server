@@ -36,31 +36,29 @@ module.exports = {
 
       ffmpegFluent(attach.path)
         .on('end', async function () {
-          console.log('Screenshots taken');
+          // console.log('Screenshots taken');
 
-          let thumbnail = await Attachment.create({
-            fileName: thumbnailName,
-            originalName: thumbnailName,
-            path: `${thumbnailFolder}/${thumbnailName}`
-          }).fetch();
+          let thumbnail = await Attachment.update({
+            id: attach.id
+          }).set({
+            thumbnail: thumbnailName
+          });
+          attach = thumbnail[0];
 
           let videoObj = await VideoLibrary.create({
             title: body.title,
             notes: body.notes,
             video: attach.id,
-            thumbnail: thumbnail.id,
             user: body.user
           }).fetch();
 
           res.ok(videoObj);
-        })
-        .on('error', function (err) {
+        }).on('error', function (err) {
           console.error(err);
           res.serverError(err);
-        })
-        .screenshots({
+        }).screenshots({
           // Will take screenshots at 20%, 40%, 60% and 80% of the video
-          count: 1,   // scrren shot count
+          count: 1, // scrren shot count
           filename: thumbnailName,
           folder: thumbnailFolder
         });

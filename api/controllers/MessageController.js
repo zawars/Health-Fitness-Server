@@ -19,7 +19,6 @@ io.on("connection", (socket) => {
       console.log(`Socket Client connected: ${socket.id}`, authData.id);
 
       socket.on('messageSend', data => {
-        console.log(data)
         RedisService.get(`socket-${data.otherUserId}`, socketId => {
           console.log('socketId', socketId)
           Message.create({

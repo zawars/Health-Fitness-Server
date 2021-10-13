@@ -21,6 +21,9 @@ module.exports = {
     originalName: {
       type: 'string'
     },
+    thumbnail: {
+      type: 'string'
+    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
