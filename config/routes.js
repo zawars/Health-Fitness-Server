@@ -62,6 +62,7 @@ module.exports.routes = {
   'POST /api/v1/program': 'ProgramController.create',
   'GET /api/v1/program/user/:id': 'ProgramController.fetchUserProgram',
   'PATCH /api/v1/program': 'ProgramController.update',
+  'PATCH /api/v1/program/:id/assign': 'ProgramController.assignClientToProgram',
 
   // Conversation Controller Routes
   'GET /api/v1/conversation/fetch/:id': 'ConversationController.fetchConversations',

@@ -31,4 +31,18 @@ module.exports = {
     res.ok(program);
   },
 
+  assignClientToProgram: async (req, res) => {
+    try {
+      let id = req.params.id;
+
+      await Program.addToCollection(id, 'clients').members([...clients]);
+
+      res.ok({
+        message: 'Program assigned successfully.'
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 };
