@@ -21,8 +21,9 @@ module.exports = {
         attach = await Attachment.findOne({
           id: val.video.video
         }).populateAll();
+
+        exerciseList[index].video.video = attach;
       }
-      exerciseList[index].video.video = attach;
 
       count++;
       if (count == exerciseList.length) {
