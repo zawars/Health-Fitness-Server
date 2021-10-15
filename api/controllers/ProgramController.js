@@ -47,11 +47,11 @@ module.exports = {
 
   fetchTraineePrograms: async (req, res) => {
     try {
-      let program = await Program.find({
-        clients: req.params.id
-      }).populateAll();
+      let programs = await UserProgram.find({
+        user: req.params.id
+      }).populate('program');
 
-      res.ok(program);
+      res.ok(programs);
     } catch (error) {
       console.log(error)
     }

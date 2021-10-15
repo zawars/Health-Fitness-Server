@@ -100,6 +100,11 @@ module.exports = {
       collection: 'programInvoice',
       via: 'user'
     },
+    traineePrograms: {
+      collection: 'program',
+      via: 'clients',
+      through: 'userprogram'
+    }
 
 
   },

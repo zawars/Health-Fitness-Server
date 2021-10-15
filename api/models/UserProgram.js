@@ -1,5 +1,5 @@
 /**
- * Program.js
+ * UserProgram.js
  *
  * @description :: A model definition represents a database table/collection.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -12,41 +12,21 @@ module.exports = {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-    title: {
-      type: 'string'
+    user: {
+      model: 'user'
     },
-    description: {
-      type: 'string'
-    },
-    type: {
-      type: 'string'
-    },
-    athleticLevel: {
-      type: 'string'
-    },
-    price: {
-      type: 'number'
-    },
+    program: {
+      model: 'program'
+    }
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
-    user: {
-      model: 'user'
-    },
+
 
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-    exercise: {
-      collection: 'exercise',
-      via: 'program'
-    },
-    clients: {
-      collection: 'user',
-      via: 'traineePrograms',
-      through: 'userprogram'
-    }
 
   },
 
