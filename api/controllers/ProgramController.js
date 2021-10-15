@@ -48,8 +48,8 @@ module.exports = {
   fetchTraineePrograms: async (req, res) => {
     try {
       let programs = await UserProgram.find({
-        user: req.params.id
-      }).populate('program');
+        client: req.params.id
+      }).populate('traineeProgram');
 
       res.ok(programs);
     } catch (error) {
