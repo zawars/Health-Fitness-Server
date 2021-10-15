@@ -15,9 +15,13 @@ module.exports = {
 
     let count = 0;
     exerciseList.forEach(async (val, index) => {
-      let attach = await Attachment.findOne({
-        id: val.video.video
-      }).populateAll();
+      let attach;
+
+      if (val.video) {
+        attach = await Attachment.findOne({
+          id: val.video.video
+        }).populateAll();
+      }
       exerciseList[index].video.video = attach;
 
       count++;
