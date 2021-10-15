@@ -35,13 +35,25 @@ module.exports = {
     try {
       let id = req.params.id;
 
-      await Program.addToCollection(id, 'clients').members([...clients]);
+      await Program.addToCollection(id, 'clients').members([...req.body.clients]);
 
       res.ok({
         message: 'Program assigned successfully.'
       });
     } catch (error) {
       console.log(error);
+    }
+  },
+
+  fetchTraineePrograms: async (req, res) => {
+    try {
+      let program = await Program.find({
+        clients: req.params.id
+      }).populateAll();
+
+      res.ok(program);
+    } catch (error) {
+      console.log(error)
     }
   }
 
