@@ -44,7 +44,7 @@ module.exports = {
     },
     clients: {
       collection: 'user',
-      via: 'traineePrograms',
+      via: 'traineeProgram',
       through: 'userprogram'
     }
 

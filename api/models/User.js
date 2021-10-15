@@ -102,7 +102,7 @@ module.exports = {
     },
     traineePrograms: {
       collection: 'program',
-      via: 'clients',
+      via: 'client',
       through: 'userprogram'
     }
 
