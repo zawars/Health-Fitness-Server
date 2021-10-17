@@ -78,14 +78,17 @@ module.exports = {
   update: async (req, res) => {
     let body = req.body;
 
-    if (body.isfileUpdated == 'true') {
-      // Delete the previous file
+    // Delete the previous file
+
+    if (body.videoId && (body.isfileUpdated || body.isLinkUpdated)) {
       await Attachment.destroy({
         id: body.videoId
       });
 
       fs.unlinkSync(body.videoPath);
+    }
 
+    if (body.isfileUpdated) {
       req.file('attachment').upload({
         dirname: '../../../uploads/'
       }, async function (err, uploadedFiles) {
@@ -103,6 +106,7 @@ module.exports = {
           title: body.title,
           notes: body.notes,
           video: attach.id,
+          link: '',
           user: body.user
         });
 
@@ -114,6 +118,7 @@ module.exports = {
       }).set({
         title: body.title,
         notes: body.notes,
+        link: body.link ? body.link : ''
       });
 
       res.ok(videoObj);
