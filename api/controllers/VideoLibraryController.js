@@ -16,53 +16,63 @@ module.exports = {
   create: async (req, res) => {
     let body = req.body;
 
-    req.file('attachment').upload({
-      dirname: '../../../uploads/'
-    }, async function (err, uploadedFiles) {
-      if (err) return res.serverError(err);
-      // return res.json({
-      //   message: uploadedFiles.length + ' file(s) uploaded successfully!',
-      //   files: uploadedFiles
-      // });
-
-      let attach = await Attachment.create({
-        fileName: (uploadedFiles[0].fd.split('\\')).pop(),
-        originalName: uploadedFiles[0].filename,
-        path: uploadedFiles[0].fd
+    if (body.type == 'link') {
+      let videoObj = await VideoLibrary.create({
+        title: body.title,
+        notes: body.notes,
+        link: body.link,
+        user: body.user
       }).fetch();
 
-      let thumbnailName = `${attach.fileName.split(".")[0]}-thumbnail.png`;
-      let thumbnailFolder = `${process.cwd().split('\\' + process.cwd().split('\\').pop())[0]}/uploads`;
-
-      ffmpegFluent(attach.path).on('end', async function () {
-        // console.log('Screenshots taken');
-
-        let thumbnail = await Attachment.update({
-          id: attach.id
-        }).set({
-          thumbnail: thumbnailName
+      res.ok(videoObj);
+    } else {
+      req.file('attachment').upload({
+        dirname: '../../../uploads/'
+      }, async function (err, uploadedFiles) {
+        if (err) return res.serverError(err);
+        // return res.json({
+        //   message: uploadedFiles.length + ' file(s) uploaded successfully!',
+        //   files: uploadedFiles
+        // });
+  
+        let attach = await Attachment.create({
+          fileName: (uploadedFiles[0].fd.split('\\')).pop(),
+          originalName: uploadedFiles[0].filename,
+          path: uploadedFiles[0].fd
         }).fetch();
-        attach = thumbnail[0];
-
-        let videoObj = await VideoLibrary.create({
-          title: body.title,
-          notes: body.notes,
-          video: attach.id,
-          user: body.user
-        }).fetch();
-
-        res.ok(videoObj);
-      }).on('error', function (err) {
-        console.error(err);
-        res.serverError(err);
-      }).screenshots({
-        // Will take screenshots at 20%, 40%, 60% and 80% of the video
-        count: 1, // scrren shot count
-        filename: thumbnailName,
-        folder: thumbnailFolder
+  
+        let thumbnailName = `${attach.fileName.split(".")[0]}-thumbnail.png`;
+        let thumbnailFolder = `${process.cwd().split('\\' + process.cwd().split('\\').pop())[0]}/uploads`;
+  
+        ffmpegFluent(attach.path).on('end', async function () {
+          // console.log('Screenshots taken');
+  
+          let thumbnail = await Attachment.update({
+            id: attach.id
+          }).set({
+            thumbnail: thumbnailName
+          }).fetch();
+          attach = thumbnail[0];
+  
+          let videoObj = await VideoLibrary.create({
+            title: body.title,
+            notes: body.notes,
+            video: attach.id,
+            user: body.user
+          }).fetch();
+  
+          res.ok(videoObj);
+        }).on('error', function (err) {
+          console.error(err);
+          res.serverError(err);
+        }).screenshots({
+          // Will take screenshots at 20%, 40%, 60% and 80% of the video
+          count: 1, // scrren shot count
+          filename: thumbnailName,
+          folder: thumbnailFolder
+        });
       });
-    });
-
+    }
   },
 
   update: async (req, res) => {

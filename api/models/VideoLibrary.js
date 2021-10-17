@@ -18,6 +18,9 @@ module.exports = {
     notes: {
       type: 'string'
     },
+    link: {
+      type: 'string'
+    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
