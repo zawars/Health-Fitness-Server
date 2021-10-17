@@ -101,4 +101,38 @@ module.exports = {
     }
   },
 
+  forgetPassword: async (req, res) => {
+    let data = req.body;
+
+    let user = await User.findOne({
+      email: data.email
+    }).decrypt();
+
+    if (user) {
+      if (user.password) {
+        EmailService.sendMail({
+          email: user.email,
+          subject: 'Forget Password',
+          message: `Your Password is : <strong>${user.password}</strong>`
+        }, (err) => {
+          if (err) {
+            console.log(err);
+            res.serverError(err);
+          } else {
+            res.ok({
+              message: "Email sent"
+            });
+          }
+        });
+      } else {
+        res.ok({
+          message: "Password does not exist."
+        });
+      }
+    } else {
+      res.ok({
+        message: "User does not exist."
+      });
+    }
+  },
 };

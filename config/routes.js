@@ -38,6 +38,7 @@ module.exports.routes = {
   // Auth Controller Routes 
   'POST /api/v1/auth/login': 'AuthController.login',
   'POST /api/v1/auth/login/social': 'AuthController.socialLogin',
+  'POST /api/v1/auth/forgetPassword': 'AuthController.forgetPassword',
 
   // User Controller Routes
   'POST /api/v1/user': 'UserController.create',
