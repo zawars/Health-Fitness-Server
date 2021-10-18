@@ -80,7 +80,7 @@ module.exports = {
 
     // Delete the previous file
 
-    if (body.videoId && (body.isfileUpdated || body.isLinkUpdated)) {
+    if (body.videoId && (body.isfileUpdated == 'true' || body.isLinkUpdated == 'true')) {
       await Attachment.destroy({
         id: body.videoId
       });
@@ -88,7 +88,7 @@ module.exports = {
       fs.unlinkSync(body.videoPath);
     }
 
-    if (body.isfileUpdated) {
+    if (body.isfileUpdated == 'true') {
       req.file('attachment').upload({
         dirname: '../../../uploads/'
       }, async function (err, uploadedFiles) {
