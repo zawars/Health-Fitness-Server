@@ -55,6 +55,18 @@ module.exports = {
     } catch (error) {
       console.log(error)
     }
+  },
+
+  fetchActivePrograms: async (req, res) => {
+    try {
+      let programs = await Program.find({
+        status: req.params.status
+      }).populateAll();
+
+      res.ok(programs);
+    } catch (error) {
+      console.log(error)
+    }
   }
 
 };

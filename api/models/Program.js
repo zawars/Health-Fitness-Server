@@ -27,6 +27,9 @@ module.exports = {
     price: {
       type: 'number'
     },
+    status: {
+      type: 'string'
+    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
