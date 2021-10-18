@@ -57,7 +57,7 @@ module.exports = {
     }
   },
 
-  fetchActivePrograms: async (req, res) => {
+  fetchProgramsByStatus: async (req, res) => {
     try {
       let programs = await Program.find({
         status: req.params.status
