@@ -64,6 +64,19 @@ module.exports = {
     let clients = body.clients;
     delete(body.clients);
 
+    if (body.oldPassword && body.newPassword) {
+      let userObj = await User.findOne({
+        id: req.params.id
+      }).decrypt();
+      
+      if (userObj.password == body.oldPassword) {
+        body.password = body.newPassword;
+      }
+    }
+    
+    body.oldPassword ? delete(body.oldPassword) : null;
+    body.newPassword ? delete(body.newPassword) : null;
+
     let user = await User.update({
       id: req.params.id
     }).set(body).fetch();
