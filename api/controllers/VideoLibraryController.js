@@ -11,16 +11,20 @@ const ffprobe = require('ffprobe-static');
 const ffmpegFluent = require('fluent-ffmpeg');
 ffmpegFluent.setFfmpegPath(ffmpegPath);
 ffmpegFluent.setFfprobePath(ffprobe.path);
+const getThumb = require('video-thumbnail-url');
 
 module.exports = {
   create: async (req, res) => {
     let body = req.body;
 
     if (body.type == 'link') {
+      let thumbnail = await getThumb(body.link);
+      let link = {url: body.link, thumbnail};
+
       let videoObj = await VideoLibrary.create({
         title: body.title,
         notes: body.notes,
-        link: body.link,
+        link: link,
         user: body.user
       }).fetch();
 
@@ -106,19 +110,26 @@ module.exports = {
           title: body.title,
           notes: body.notes,
           video: attach.id,
-          link: '',
+          link: undefined,
           user: body.user
         });
 
         res.ok(videoObj);
       });
     } else {
+      let link;
+
+      if (body.isLinkUpdated == 'true') {
+        let thumbnail = await getThumb(body.link);
+        link = {url: body.link, thumbnail};
+      }
+
       let videoObj = await VideoLibrary.updateOne({
         id: body.id
       }).set({
         title: body.title,
         notes: body.notes,
-        link: body.link ? body.link : ''
+        link: link ? link : undefined
       });
 
       res.ok(videoObj);

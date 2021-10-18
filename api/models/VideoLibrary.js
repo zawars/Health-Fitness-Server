@@ -19,7 +19,7 @@ module.exports = {
       type: 'string'
     },
     link: {
-      type: 'string'
+      type: 'json'
     },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
