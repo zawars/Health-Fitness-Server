@@ -49,7 +49,7 @@ module.exports = {
     try {
       let programs = await UserProgram.find({
         client: req.params.id
-      });
+      }).populateAll();
 
       res.ok(programs);
     } catch (error) {
