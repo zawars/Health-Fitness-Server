@@ -68,12 +68,12 @@ module.exports = {
       let userObj = await User.findOne({
         id: req.params.id
       }).decrypt();
-      
+
       if (userObj.password == body.oldPassword) {
         body.password = body.newPassword;
       }
     }
-    
+
     body.oldPassword ? delete(body.oldPassword) : null;
     body.newPassword ? delete(body.newPassword) : null;
 
@@ -160,9 +160,16 @@ module.exports = {
       id
     }).populateAll();
 
+    let trainer;
+    if (user.trainer) {
+      trainer = await User.findOne({
+        id: user.trainer.id
+      }).populateAll();
+    }
+
     res.ok({
       programs: user.programs,
-      trainers: user.trainer ? [user.trainer] : []
+      trainers: trainer ? [trainer] : []
     });
   },
 
