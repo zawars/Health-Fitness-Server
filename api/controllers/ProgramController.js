@@ -51,12 +51,6 @@ module.exports = {
         client: req.params.id
       });
 
-      let traineeProgram = await Program.findOne({
-        id: programs.traineeProgram
-      }).populateAll();
-
-      programs.traineeProgram = traineeProgram;
-
       res.ok(programs);
     } catch (error) {
       console.log(error)
