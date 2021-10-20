@@ -49,7 +49,13 @@ module.exports = {
     try {
       let programs = await UserProgram.find({
         client: req.params.id
-      }).populate('traineeProgram');
+      });
+
+      let traineeProgram = await Program.findOne({
+        id: programs.traineeProgram
+      }).populateAll();
+
+      programs.traineeProgram = traineeProgram;
 
       res.ok(programs);
     } catch (error) {
