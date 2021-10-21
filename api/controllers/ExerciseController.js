@@ -39,9 +39,6 @@ module.exports = {
       id
     }).set({
       ...req.body,
-      video: req.body.video.id,
-      program: req.body.program.id,
-      user: req.body.user.id,
     });
 
     res.ok(exercise);
