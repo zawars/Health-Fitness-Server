@@ -39,6 +39,8 @@ module.exports.routes = {
   'POST /api/v1/auth/login': 'AuthController.login',
   'POST /api/v1/auth/login/social': 'AuthController.socialLogin',
   'POST /api/v1/auth/forgetPassword': 'AuthController.forgetPassword',
+  'POST /api/v1/auth/forget/verify': 'AuthController.forgetVerify',
+  'POST /api/v1/auth/forget/renew': 'AuthController.updateForgetPassword',
 
   // User Controller Routes
   'POST /api/v1/user': 'UserController.create',
@@ -65,7 +67,7 @@ module.exports.routes = {
   'PATCH /api/v1/program': 'ProgramController.update',
   'PATCH /api/v1/program/:id/assign': 'ProgramController.assignClientToProgram',
   'GET /api/v1/program/trainee/user/:id/fetch': 'ProgramController.fetchTraineePrograms',
-  'GET /api/v1/program/status/:status' : 'ProgramController.fetchProgramsByStatus',
+  'GET /api/v1/program/status/:status': 'ProgramController.fetchProgramsByStatus',
 
   // Conversation Controller Routes
   'GET /api/v1/conversation/fetch/:id': 'ConversationController.fetchConversations',

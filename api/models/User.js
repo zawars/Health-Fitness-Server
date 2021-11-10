@@ -87,6 +87,14 @@ module.exports = {
     country: {
       model: 'countries'
     },
+    isVerified: {
+      type: 'boolean',
+      defaultsTo: false
+    },
+    isPasswordChanged: {
+      type: 'boolean',
+      defaultsTo: false
+    },
 
 
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
