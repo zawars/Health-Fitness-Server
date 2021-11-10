@@ -61,7 +61,7 @@ module.exports = {
     try {
       let programs = await Program.find({
         status: req.params.status
-      }).populateAll();
+      }).paginate(req.params.page, 10).populateAll();
 
       res.ok(programs);
     } catch (error) {
