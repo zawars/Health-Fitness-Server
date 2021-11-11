@@ -144,7 +144,8 @@ module.exports = {
         digits: 8,
         secret: sails.config.session.secret + user.email,
         encoding: 'base32',
-        step: 300
+        step: 90,
+        window : 10
       });
 
       EmailService.sendMail({
@@ -182,7 +183,8 @@ module.exports = {
           encoding: 'base32',
           token: req.body.token,
           digits: 8,
-          step: 300
+          step: 90,
+          window : 10
         });
 
         if (tokenValidates) {
@@ -227,7 +229,7 @@ module.exports = {
             email: user.email
           }).set({
             password: req.body.password,
-            isPasswordChanged: req.body.isPasswordChanged
+            isPasswordChanged: false
           }).fetch();
           user = user[0];
 
