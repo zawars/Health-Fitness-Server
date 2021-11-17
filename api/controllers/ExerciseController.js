@@ -52,17 +52,22 @@ module.exports = {
     }).populateAll();
 
     let count = 0;
-    exercise.forEach(async (val, index) => {
-      let attach = await Attachment.findOne({
-        id: val.video.video
-      }).populateAll();
-      exercise[index].video.video = attach;
 
-      count++;
-      if (count == exercise.length) {
-        res.ok(exercise);
-      }
-    });
+    if (exercise.length > 0) {
+      exercise.forEach(async (val, index) => {
+        let attach = await Attachment.findOne({
+          id: val.video.video
+        }).populateAll();
+        exercise[index].video.video = attach;
+
+        count++;
+        if (count == exercise.length) {
+          res.ok(exercise);
+        }
+      });
+    } else {
+      res.ok(exercise);
+    }
 
   },
 
