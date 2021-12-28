@@ -5,6 +5,7 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 const jwt = require("jsonwebtoken");
+const speakEasy = require('speakeasy');
 
 module.exports = {
   create: async (req, res) => {
