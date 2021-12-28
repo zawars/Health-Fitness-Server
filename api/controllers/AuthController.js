@@ -17,42 +17,42 @@ module.exports = {
     }).decrypt();
 
     if (user) {
-      // if (user.isVerified) {
-      // if (err) {
-      //   res.ok({
-      //     message: "Invalid password."
-      //   });
-      // } else {
-      // if (result) {
-      if (user.password == data.password) {
-        jwt.sign(user, sails.config.session.secret, (err, token) => {
-          RedisService.set(user.id, token, () => {
-            console.log(`${user.email} logged in.`);
-            delete(user.password);
-
-            res.ok({
-              token,
-              user,
-              message: "Logged in successfully."
-            });
+      if (user.isVerified) {
+        if (err) {
+          res.ok({
+            message: "Invalid password."
           });
-        });
+        } else {
+          if (result) {
+            if (user.password == data.password) {
+              jwt.sign(user, sails.config.session.secret, (err, token) => {
+                RedisService.set(user.id, token, () => {
+                  console.log(`${user.email} logged in.`);
+                  delete(user.password);
+
+                  res.ok({
+                    token,
+                    user,
+                    message: "Logged in successfully."
+                  });
+                });
+              });
+            } else {
+              res.ok({
+                message: "Invalid password."
+              });
+            }
+          } else {
+            res.ok({
+              message: "Invalid password."
+            });
+          }
+        }
       } else {
         res.ok({
-          message: "Invalid password."
+          message: "User is not verified."
         });
       }
-      // } else {
-      //   res.ok({
-      //     message: "Invalid password."
-      //   });
-      // }
-      // }
-      // } else {
-      //   res.ok({
-      //     message: "User is not verified."
-      //   });
-      // }
     } else {
       res.ok({
         message: "User does not exist."
@@ -103,6 +103,94 @@ module.exports = {
     }
   },
 
+  verify: async (req, res) => {
+    try {
+      let user = await User.findOne({
+        email: req.body.email
+      });
+
+      if (user.isVerified == false) {
+        let tokenValidates = speakEasy.totp.verify({
+          secret: sails.config.session.secret + req.body.email,
+          encoding: 'base32',
+          token: req.body.token,
+          digits: 8,
+          step: 300
+        });
+
+        if (tokenValidates) {
+          // let user = await User.findOne({ email: req.body.email });
+          let updatedUser = await User.update({
+            email: req.body.email
+          }).set({
+            isVerified: true
+          }).fetch();
+          updatedUser = updatedUser[0];
+
+          jwt.sign(updatedUser, sails.config.session.secret, (err, token) => {
+            RedisService.set(updatedUser.id, token, () => {
+              console.log(`${updatedUser.email} logged in.`);
+
+              res.ok({
+                token,
+                user: updatedUser,
+                message: 'User verified successfully.'
+              });
+            });
+          });
+        } else {
+          res.ok({
+            message: 'Token invalid or expired.'
+          });
+        }
+      } else {
+        res.ok({
+          message: 'User already verified.'
+        });
+      }
+    } catch (error) {
+      res.ok({
+        message: error
+      });
+    }
+  },
+
+  // Verify Resend
+  resendToken: async (req, res) => {
+    let user = await User.findOne({
+      email: req.body.email
+    }).populateAll();
+    if (user.isVerified == false) {
+      let authCode = speakEasy.totp({
+        digits: 8,
+        secret: sails.config.session.secret + user.email,
+        encoding: 'base32',
+        step: 300
+      });
+
+      // RedisService.set(authCode, user, () => {
+      EmailService.sendMail({
+        email: user.email,
+        subject: 'Verification',
+        message: `Please use this <code>${authCode}</code> token to verify your account. `
+      }, (err) => {
+        if (err) {
+          res.forbidden('Error sending email.');
+        } else {
+          res.ok({
+            user,
+            message: 'Verification token sent to your email. Please verify.'
+          });
+        }
+      });
+      // });
+    } else {
+      res.ok({
+        message: 'User already verified.'
+      })
+    }
+  },
+
   forgetPassword: async (req, res) => {
     let data = req.body;
 
@@ -145,7 +233,7 @@ module.exports = {
         secret: sails.config.session.secret + user.email,
         encoding: 'base32',
         step: 90,
-        window : 10
+        window: 10
       });
 
       EmailService.sendMail({
@@ -184,7 +272,7 @@ module.exports = {
           token: req.body.token,
           digits: 8,
           step: 90,
-          window : 10
+          window: 10
         });
 
         if (tokenValidates) {

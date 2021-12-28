@@ -41,6 +41,8 @@ module.exports.routes = {
   'POST /api/v1/auth/forgetPassword': 'AuthController.forgetPassword',
   'POST /api/v1/auth/forget/verify': 'AuthController.forgetVerify',
   'POST /api/v1/auth/forget/renew': 'AuthController.updateForgetPassword',
+  'POST /api/v1/auth/verify': 'AuthController.verify',
+  'POST /api/v1/auth/verify/resend': 'AuthController.resendToken',
 
   // User Controller Routes
   'POST /api/v1/user': 'UserController.create',
