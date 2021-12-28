@@ -106,22 +106,22 @@ module.exports = {
   verify: async (req, res) => {
     try {
       let user = await User.findOne({
-        email: req.body.email
+        id: req.body.id
       });
 
       if (user.isVerified == false) {
         let tokenValidates = speakEasy.totp.verify({
-          secret: sails.config.session.secret + req.body.email,
+          secret: sails.config.session.secret + user.email,
           encoding: 'base32',
           token: req.body.token,
           digits: 8,
-          step: 300
+          step: 86400
         });
 
         if (tokenValidates) {
-          // let user = await User.findOne({ email: req.body.email });
+          // let user = await User.findOne({ email: req.body.id });
           let updatedUser = await User.update({
-            email: req.body.email
+            id: req.body.id
           }).set({
             isVerified: true
           }).fetch();
@@ -158,14 +158,15 @@ module.exports = {
   // Verify Resend
   resendToken: async (req, res) => {
     let user = await User.findOne({
-      email: req.body.email
+      id: req.body.id
     }).populateAll();
+
     if (user.isVerified == false) {
       let authCode = speakEasy.totp({
         digits: 8,
         secret: sails.config.session.secret + user.email,
         encoding: 'base32',
-        step: 300
+        step: 86400
       });
 
       // RedisService.set(authCode, user, () => {

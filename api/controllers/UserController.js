@@ -26,9 +26,7 @@ module.exports = {
       EmailService.sendMail({
         email: user.email,
         subject: "Verification",
-        message: `Please use this link token to verify your account. <br>
-        <a href="${sails.config.custom.backendPath}/user/${user.id}/verify/${authCode}" target="_blank">Verify</a>
-        `
+        message: `Please use this token <code>${authCode}</code> to verify your account. <br>`
       }, (err) => {
         if (err) {
           res.ok({

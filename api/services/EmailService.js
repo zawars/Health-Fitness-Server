@@ -2,13 +2,13 @@ const nodemailer = require("nodemailer");
 
 // SET Email Opts
 
-const emailId = 'saad.afzaal7777777@gmail.com';
+const emailId = 'saad.afzaal7777@gmail.com';
 
 let opts = {
   service: 'Gmail',
   auth: {
       user: emailId,
-      pass: 'sa20182018'
+      pass: 'Roger123'
   }
 }
 
