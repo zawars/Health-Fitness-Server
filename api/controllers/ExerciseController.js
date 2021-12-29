@@ -52,8 +52,8 @@ module.exports = {
     }).populateAll();
 
     let userProgram = await UserProgram.findOne({
-      client: req.params.userId,
-      traineeProgram: req.params.programId
+      client: req.body.userId,
+      traineeProgram: req.body.programId
     }).populateAll();
 
     let count = 0;
@@ -67,7 +67,10 @@ module.exports = {
 
         count++;
         if (count == exercise.length) {
-          res.ok(exercise);
+          res.ok({
+            exercise,
+            isAssigned: userProgram ? true : false
+          });
         }
       });
     } else {
