@@ -65,6 +65,10 @@ module.exports = {
       type: 'string',
       defaultsTo: 'Fitness Trainer'
     },
+    hourlyRate: {
+      type: 'number',
+      defaultsTo: '0'
+    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗

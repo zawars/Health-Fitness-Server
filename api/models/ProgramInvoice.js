@@ -20,6 +20,10 @@ module.exports = {
       type: 'number',
       defaultsTo: 0
     },
+    numberOfHours: {
+      type: 'number',
+      defaultsTo: 0
+    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
@@ -28,6 +32,9 @@ module.exports = {
       model: 'program'
     },
     user: {
+      model: 'user'
+    },
+    trainer: {
       model: 'user'
     }
 
