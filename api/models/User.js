@@ -67,7 +67,7 @@ module.exports = {
     },
     hourlyRate: {
       type: 'number',
-      defaultsTo: '0'
+      defaultsTo: 0
     },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
