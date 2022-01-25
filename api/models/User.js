@@ -69,6 +69,9 @@ module.exports = {
       type: 'number',
       defaultsTo: 0
     },
+    currency: {
+      type: 'string',
+    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
