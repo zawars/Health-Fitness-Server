@@ -12,23 +12,29 @@ module.exports = {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-    title: {
+    // title: {
+    //   type: 'string'
+    // },
+    // description: {
+    //   type: 'string'
+    // },
+    // type: {
+    //   type: 'string'
+    // },
+    // athleticLevel: {
+    //   type: 'string'
+    // },
+    // price: {
+    //   type: 'number'
+    // },
+    // status: {
+    //   type: 'string'
+    // },
+    name: {
       type: 'string'
     },
-    description: {
-      type: 'string'
-    },
-    type: {
-      type: 'string'
-    },
-    athleticLevel: {
-      type: 'string'
-    },
-    price: {
-      type: 'number'
-    },
-    status: {
-      type: 'string'
+    days: {
+      type: 'json'
     },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
@@ -41,10 +47,10 @@ module.exports = {
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-    exercise: {
-      collection: 'exercise',
-      via: 'program'
-    },
+    // exercise: {
+    //   collection: 'exercise',
+    //   via: 'program'
+    // },
     clients: {
       collection: 'user',
       via: 'traineeProgram',

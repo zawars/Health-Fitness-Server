@@ -83,4 +83,22 @@ module.exports.routes = {
   'GET /api/v1/programInvoice/user/:id': 'ProgramInvoiceController.fetchUserInvoices',
   'GET /api/v1/programInvoice/:id/approve': 'ProgramInvoiceController.approveInvoice',
 
+  // Tutor Listing Routes
+  'POST /api/v1/tutorListing': 'TutorListing.create',
+  'GET /api/v1/tutorListing/fetch/instructor/:id': 'TutorListing.getAvailablity',
+  'GET /api/v1/tutorListing/fetch/organisation/:id': 'TutorListing.getTutorListingByOrganisation',
+  'PUT /api/v1/tutorListing/:id': 'TutorListing.update',
+
+  // Booking Routes
+  'POST /api/v1/booking': 'Booking.create',
+  'GET /api/v1/booking/fetch/user/:id': 'Booking.fetchBookingsByUser',
+  'GET /api/v1/booking/fetch/instructor/:id': 'Booking.fetchBookingsByInstructor',
+  'PUT /api/v1/booking/:id': 'Booking.update',
+  'GET /api/v1/booking/:id': 'Booking.show',
+  'PUT /api/v1/booking/:id/cancel': 'Booking.cancelBooking',
+  'PUT /api/v1/booking/:id/reschedule': 'Booking.rescheduleBooking',
+
+  // Workout Routes
+  'GET /api/v1/workout/user/:id/fetch': 'WorkoutController.fetchWorkoutsByUser',
+
 };

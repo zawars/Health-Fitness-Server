@@ -1,5 +1,5 @@
 /**
- * Exercise.js
+ * TutorListing.js
  *
  * @description :: A model definition represents a database table/collection.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -12,57 +12,36 @@ module.exports = {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-    name: {
-      type: 'string'
-    },
-    notes: {
-      type: 'string'
-    },
-    category: {
-      type: 'string'
-    },
-    duration: {
-      type: 'string'
-    },
-    set: {
-      type: 'string'
-    },
-    reps: {
-      type: 'string'
-    },
-    time: {
-      type: 'string'
-    },
-    intensity: {
-      type: 'string'
-    },
-    link: {
-      type: 'string'
-    },
-    type: {
-      type: 'string',
-      isIn: ["exercise", "break"]
-    },
+    // day: {
+    //   type: 'string',
+    //   columnType: 'date'
+    // },
+    // isTaken: {
+    //   type: 'boolean',
+    //   defaultsTo: false
+    // },
+    // timeSlot: {
+    //   type: 'string'
+    // },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
-    video: {
-      model: 'videoLibrary'
-    },
-    user: {
+    instructor: {
       model: 'user'
     },
-    // workout: {
-    //   model: 'workout'
+    // takenBy: {
+    //   model: 'user'
     // },
+    days: {
+      collection: 'day',
+      via: 'listing'
+    },
 
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-    program: {
-      model: 'program'
-    },
+
   },
 
 };

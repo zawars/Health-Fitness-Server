@@ -13,23 +13,24 @@ module.exports = {
       user: id
     }).populateAll();
 
-    let count = 0;
-    exerciseList.forEach(async (val, index) => {
-      let attach;
+    // let count = 0;
+    // exerciseList.forEach(async (val, index) => {
+    //   let attach;
 
-      if (val.video) {
-        attach = await Attachment.findOne({
-          id: val.video.video
-        }).populateAll();
+    //   if (val.video) {
+    //     attach = await Attachment.findOne({
+    //       id: val.video.video
+    //     }).populateAll();
 
-        exerciseList[index].video.video = attach;
-      }
+    //     exerciseList[index].video.video = attach;
+    //   }
 
-      count++;
-      if (count == exerciseList.length) {
-        res.ok(exerciseList);
-      }
-    });
+    //   count++;
+    //   if (count == exerciseList.length) {
+    //     res.ok(exerciseList);
+    //   }
+    // });
+    res.ok(exerciseList);
   },
 
   update: async (req, res) => {

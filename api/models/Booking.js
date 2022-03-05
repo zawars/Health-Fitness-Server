@@ -1,5 +1,5 @@
 /**
- * Exercise.js
+ * Booking.js
  *
  * @description :: A model definition represents a database table/collection.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -12,57 +12,42 @@ module.exports = {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-    name: {
-      type: 'string'
+    isCancelled: {
+      type: 'boolean',
+      defaultsTo: false
     },
-    notes: {
-      type: 'string'
-    },
-    category: {
-      type: 'string'
-    },
-    duration: {
-      type: 'string'
-    },
-    set: {
-      type: 'string'
-    },
-    reps: {
-      type: 'string'
-    },
-    time: {
-      type: 'string'
-    },
-    intensity: {
-      type: 'string'
-    },
-    link: {
-      type: 'string'
-    },
-    type: {
+    cancelledBy: {
       type: 'string',
-      isIn: ["exercise", "break"]
+      isIn: ['user', 'instructor']
+    },
+    rescheduledBy: {
+      type: 'string',
+      isIn: ['user', 'instructor']
     },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
-    video: {
-      model: 'videoLibrary'
+    tutorListing: {
+      model: 'tutorListing'
     },
     user: {
       model: 'user'
     },
-    // workout: {
-    //   model: 'workout'
-    // },
+    instructor: {
+      model: 'user'
+    },
+    day: {
+      model: 'day',
+    },
+    timeSlot: {
+      model: 'timeSlot'
+    },
 
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-    program: {
-      model: 'program'
-    },
+
   },
 
 };
